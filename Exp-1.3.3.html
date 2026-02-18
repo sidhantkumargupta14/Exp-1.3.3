@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Inheritance Example</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        .box {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px 0;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Class Hierarchy: Person → Student / Teacher</h2>
+    <div id="output"></div>
+
+    <script>
+        // ======================
+        // Base Class: Person
+        // ======================
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            getDetails() {
+                return "Name: " + this.name + ", Age: " + this.age;
+            }
+        }
+
+        // ======================
+        // Student Class
+        // ======================
+        class Student extends Person {
+            constructor(name, age, grade) {
+                super(name, age);
+                this.grade = grade;
+            }
+
+            // Method Overriding
+            getDetails() {
+                return "Student - Name: " + this.name +
+                       ", Age: " + this.age +
+                       ", Grade: " + this.grade;
+            }
+        }
+
+        // ======================
+        // Teacher Class
+        // ======================
+        class Teacher extends Person {
+            constructor(name, age, subject) {
+                super(name, age);
+                this.subject = subject;
+            }
+
+            // Method Overriding
+            getDetails() {
+                return "Teacher - Name: " + this.name +
+                       ", Age: " + this.age +
+                       ", Subject: " + this.subject;
+            }
+        }
+
+        // ======================
+        // Polymorphism
+        // ======================
+        let persons = [
+            new Student("Rahul", 20, "A"),
+            new Teacher("Mr. Sharma", 45, "Mathematics"),
+            new Student("Priya", 19, "B"),
+            new Teacher("Ms. Verma", 38, "Science")
+        ];
+
+        let outputDiv = document.getElementById("output");
+
+        persons.forEach(function(person) {
+            let div = document.createElement("div");
+            div.className = "box";
+            div.innerHTML = person.getDetails();
+            outputDiv.appendChild(div);
+        });
+    </script>
+
+</body>
+</html>
